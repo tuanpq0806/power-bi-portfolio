@@ -1,0 +1,61 @@
+
+Table sales:
+ 
+1. Sale_YTD = TOTALYTD([Total sale value],'Calendar'[Date])
+
+2. Sale product blue = CALCULATE(Sum(Sales[SalesAmount]), Products[Color]="BLUE")
+
+3. Sale amount LY dateadd = CALCULATE(sum(Sales[SalesAmount]), DATEADD('Calendar'[Date],-1,YEAR))
+
+4. Same month last year = CALCULATE(sum(Sales[SalesAmount]), DATESMTD(SAMEPERIODLASTYEAR('Calendar'[Date])))
+
+5. SUMX_sale_ctm_key = SUMX(VALUES(Sales[CustomerKey]), [Visit])
+
+6. SUMX_sale_cus_key_cout_day = SUMX(VALUES(Sales[CustomerKey]),[Count of days_cus_key])
+
+7. Total global sale = CALCULATE(sum(Sales[SalesAmount]), All(Territory))
+
+8. Total Margin$ = [Total sale value]-[Total_cost_value]
+
+9. Total sale value = Sum(Sales[SalesAmount]) 
+
+10.Total sale LY = CALCULATE(sum(Sales[ExtendedAmount]),SAMEPERIODLASTYEAR('Calendar'[Date]))
+
+11.Total sale to region or country 2 = CALCULATE(sum(Sales[SalesAmount]),ALLEXCEPT(Territory,Territory[Group]))
+
+12. Total Selected Groups = CALCULATE(sum(Sales[SalesAmount]),ALLSELECTED(Territory))
+
+13. Total_ Sale_amount_cus_> 1950 = CALCULATE(sum(Sales[SalesAmount]),Year(Customers[BirthDate]>1950))
+
+14. Total_cost_value = sum(Sales[TotalProductCost])
+
+15. Total_margin% = [Total Margin$]/[Total sale value]
+
+16. Total_sale_female = CALCULATE([Total sale value], Customers[Gender]="F")
+
+17. Visit = COUNTROWS(Sales)
+
+18. YTD sale var = Sales[Sale_YTD]-Sales[Sale amount LY dateadd]
+
+19. Count Customers 1 = Count(Sales[CustomerKey])
+
+20. Count of days_cus_key = DISTINCTCOUNT(Sales[OrderDate])
+
+21. Count_ distinct_ cus = DISTINCTCOUNT(Sales[CustomerKey])
+
+22. Average visits per day = DIVIDE([Visit],[Count of days_cus_key])
+
+Table Products
+
+1. Context_transition_sale_amount = CALCULATE(SUM(Sales[SalesAmount]))
+
+Table Calendar
+
+1. Is_weekend = OR(CALENDAR[DayNumberOfWeek]=1,CALENDAR[DayNumberOfWeek]=7)
+
+2. Today = NOW()
+
+
+
+
+
